@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.DS_Store
+.env
+.env.*
+!.env.example
+*.local
+# Local delivery and internal QA evidence must never be published.
+screenshots/
+docs/verification.md
+docs/launch-checklist.md
+*.zip
