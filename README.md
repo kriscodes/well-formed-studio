@@ -82,3 +82,5 @@ Prelaunch indexing is disabled in three places: the robots meta tag in `index.ht
 - Run the checks and review desktop, mobile, keyboard navigation, and the deployed HTTPS assets after any launch change.
 
 The page contains no fabricated customers, testimonials, credentials, service guarantees, or delivery SLA.
+
+Staging setup and promotion: [docs/STAGING.md](docs/STAGING.md) (prepared; activation pending review).
