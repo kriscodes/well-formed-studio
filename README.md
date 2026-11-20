@@ -1,6 +1,6 @@
 # Well Formed Studio
 
-A one-page, responsive TypeScript website for Well Formed Studio, operated by Kristian Salmeron. It is an isolated static project, prepared for Render static hosting.
+A one-page, responsive TypeScript website for Well Formed Studio, operated by Kristian Salmeron. It is hosted as a Render Static Site.
 
 The site is deliberately in **prelaunch** mode. It does not collect inquiries, expose a personal email address, accept payment, or create a repair booking. No backend, Stripe secret key, payment form, or customer database is included.
 
@@ -53,7 +53,7 @@ This source does not activate Stripe. Complete merchant setup separately, verify
 
 For the intended qualification-first workflow, keep payment unavailable on the public site and send the approved repair's payment link privately after the written agreement. Do not place a reusable general payment link on this page as a shortcut around qualification.
 
-## Render handoff
+## Deployment
 
 This project is suitable for a Render **Static Site** with:
 
@@ -66,7 +66,7 @@ This project is suitable for a Render **Static Site** with:
 
 If this directory is placed inside a larger repository, set the Static Site's root directory to `well-formed-studio`. If this directory becomes the repository root, leave the root directory unset.
 
-`render.yaml` declares one static service with automatic deployment turned off, build command `npm ci && npm run build`, and output `./dist`. `SKIP_INSTALL_DEPS: true` avoids a separate automatic dependency installation before that build command. It specifies no service plan, region, database, disk, worker, or paid resource. Headers include a content security policy, clickjacking and MIME protections, restricted browser permissions, and prelaunch indexing controls.
+`render.yaml` declares one static service with deployment after passing CI checks, build command `npm ci && npm run build`, and output `./dist`. `SKIP_INSTALL_DEPS: true` avoids a separate automatic dependency installation before that build command. It specifies no service plan, region, database, disk, worker, or paid resource. Headers include a content security policy, clickjacking and MIME protections, restricted browser permissions, and prelaunch indexing controls.
 
 Before applying the Blueprint, validate it against Render's current schema and review the target workspace, repository, domain, and service settings. Review the current Static Site offering and usage limits. The source requires only static hosting.
 
@@ -83,4 +83,12 @@ Prelaunch indexing is disabled in three places: the robots meta tag in `index.ht
 
 The page contains no fabricated customers, testimonials, credentials, service guarantees, or delivery SLA.
 
-Staging setup and promotion: [docs/STAGING.md](docs/STAGING.md) (prepared; activation pending review).
+
+## Environments
+
+| Service | Branch | Render URL |
+| --- | --- | --- |
+| well-formed-studio-staging | `staging` | https://well-formed-studio-staging.onrender.com |
+| well-formed-studio | `main` | https://well-formed-studio.onrender.com |
+
+Production and staging use separate services. Keep staging credentials and data isolated. Run CI on each release candidate, verify the deployed source revision and health endpoints, and retain the previous working deployment for recovery. Documentation-only commits can be excluded by build filters; deploy the checked revision manually when a rebuild is required.
